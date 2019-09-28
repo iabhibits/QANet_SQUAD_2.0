@@ -1,40 +1,24 @@
-# BiDAF Baseline model for SQuAD 2.0
+# QANet for SQuAD 2.0
 
 ## Introduction
 
-Implementation of BiDAF model for SQuAD 2.0 dataset.
+Implementation of [QANet](https://arxiv.org/pdf/1804.09541.pdf) for SQuAD 2.0 dataset.
 
 ## Usage
 
-Setup environment and preprocess data:
+Run `python3 QANet_main.py --batch_size 32 --epochs 30 --with_cuda --use_ema ` to train model with cuda.
 
-conda env create -f environment.yml
-
-conda activate squad
-
-python setup.py
-
-Start training model:
-
-python train.py -n baseline
+Run `python3 QANet_main.py --batch_size 32 --epochs 3 --with_cuda --use_ema --debug` to debug with small batches data.
 
 ## Structure
+QANet_main.py: driver program
 
- args.py: Command-line arguments for setup.py, train.py, and test.py
+trainer/QANet_trainer.py: trainer.
 
- environment.yml: List of packages in the conda virtual environment
+model/QANet_model.py: defines QANet.
 
- layers.py: Layers used by the models
-
- models.py: The starter model, and any others you might add
-
- setup.py: Downloads pretrained GloVe vectors and preprocesses the data
-
- train.py: Top-level entrypoint for training the model
-
- test.py: Top-level entrypoint for testing the model and generating submissions for the leaderboard
-
- util.py: Utility functions and classes
+data_loader/SQuAD.py: SQuAD 1.1 and 2.0 data loader.
 
 ## Acknowledgement
-1. Model is taken from https://github.com/chrischute/squad
+1. The QANet structure implementation is mainly based on https://github.com/BangLiu/QANet-PyTorch
+2. Baseline model is taken from https://github.com/chrischute/squad
